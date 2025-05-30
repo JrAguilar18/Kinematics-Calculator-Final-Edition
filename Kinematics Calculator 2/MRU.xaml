@@ -14,14 +14,20 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <!-- Grid.RowDefinitions -->
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <!-- Controles superiores -->
+            <RowDefinition Height="2*"/>
+            <!-- Área principal más ajustada -->
             <RowDefinition Height="Auto"/>
+            <!-- Controles inferiores -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <!-- ColumnDefinition (opcional si quieres más espacio para parámetros) -->
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <!-- Área gráfica -->
+            <ColumnDefinition Width="1.5*"/>
+            <!-- Parámetros -->
         </Grid.ColumnDefinitions>
 
         <!-- ComboBox para seleccionar la función -->
@@ -37,13 +43,13 @@
             <ComboBoxItem Content="v(t) = v" />
         </ComboBox>
 
-        <!-- Área de gráficos -->
+        <!-- Gráfico más compacto -->
         <scottPlot:WpfPlot x:Name="PlotArea"
-                           Grid.Row="1" Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="10"
-                           VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch" /> 
+                   Grid.Row="1" Grid.Column="0"
+                   Margin="10"
+                   VerticalAlignment="Top"
+                   Height="300" />
+        <!-- Altura fija más compacta -->
 
         <!-- Panel de parámetros -->
         <StackPanel Grid.Row="1" Grid.Column="2"
