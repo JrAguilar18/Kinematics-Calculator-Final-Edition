@@ -1,0 +1,97 @@
+﻿<Window x:Class="Kinematics_Calculator_2.MRU"
+        xmlns:scottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kinematics_Calculator_2"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MRU" Height="900" Width="1200">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ComboBox para seleccionar la función -->
+        <ComboBox x:Name="FunctionSelector"
+                  Grid.Row="0" Grid.Column="2"
+                  Margin="0 0 10 10"
+                  Width="200"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  materialDesign:HintAssist.Hint="Selecciona la función"
+                  SelectionChanged="FunctionSelector_SelectionChanged">
+            <ComboBoxItem Content="d(t) = v·t" />
+            <ComboBoxItem Content="v(t) = v" />
+        </ComboBox>
+
+        <!-- Área de gráficos -->
+        <scottPlot:WpfPlot x:Name="PlotArea"
+                           Grid.Row="1" Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Margin="10"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch" /> 
+
+        <!-- Panel de parámetros -->
+        <StackPanel Grid.Row="1" Grid.Column="2"
+                    Margin="10"
+                    VerticalAlignment="Top">
+            <TextBlock Text="Parámetros" FontWeight="Bold" FontSize="16" Margin="0 0 0 10"/>
+            <StackPanel Orientation="Horizontal" Margin="0 5">
+                <TextBlock Text="Velocidad (v):" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="VelocityInput" Width="100" Margin="5 0"/>
+                <TextBlock Text="m/s" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 5">
+                <TextBlock Text="Tiempo (t):" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="TimeInput" Width="100" Margin="5 0"/>
+                <TextBlock Text="s" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Button Content="Calcular"
+                    Width="100"
+                    Margin="0 10 0 0"
+                    Click="CalculateButton_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}" />
+        </StackPanel>
+
+        <!-- Texto dinámico y botones -->
+        <StackPanel Grid.Row="2" Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0 10">
+            <TextBlock x:Name="MissingParametersText"
+                       Text="Faltan 2 parámetros por completar"
+                       VerticalAlignment="Center"
+                       Margin="0 0 20 0"/>
+            <Button ToolTip="Volver al menú"
+                    Click="BackButton_Click"
+                    Style="{StaticResource MaterialDesignIconButton}">
+                <materialDesign:PackIcon Kind="ArrowLeft" />
+            </Button>
+            <Button ToolTip="Limpiar gráfica"
+                    Click="ClearButton_Click"
+                    Style="{StaticResource MaterialDesignIconButton}">
+                <materialDesign:PackIcon Kind="Broom" />
+            </Button>
+            <Button ToolTip="Ayuda"
+                    Click="HelpButton_Click"
+                    Style="{StaticResource MaterialDesignIconButton}">
+                <materialDesign:PackIcon Kind="HelpCircle" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
