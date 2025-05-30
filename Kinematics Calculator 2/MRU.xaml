@@ -10,7 +10,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MRU" Height="900" Width="1200">
+        Title="MRU" Height="600" Width="850">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -38,7 +38,10 @@
                   HorizontalAlignment="Right"
                   VerticalAlignment="Top"
                   materialDesign:HintAssist.Hint="Selecciona la función"
-                  SelectionChanged="FunctionSelector_SelectionChanged">
+                  SelectionChanged="FunctionSelector_SelectionChanged"
+                  FontSize="16"
+                  FontWeight="Medium"
+                  Padding="5" >
             <ComboBoxItem Content="d(t) = v·t" />
             <ComboBoxItem Content="v(t) = v" />
         </ComboBox>
@@ -55,22 +58,62 @@
         <StackPanel Grid.Row="1" Grid.Column="2"
                     Margin="10"
                     VerticalAlignment="Top">
-            <TextBlock Text="Parámetros" FontWeight="Bold" FontSize="16" Margin="0 0 0 10"/>
+            <TextBlock Text="Parámetros"
+                        FontWeight="Bold"
+                        FontSize="20"
+                        Foreground="{DynamicResource MaterialDesignBody}"
+                        Margin="0 0 0 15"/>
             <StackPanel Orientation="Horizontal" Margin="0 5">
-                <TextBlock Text="Velocidad (v):" Width="100" VerticalAlignment="Center"/>
-                <TextBox x:Name="VelocityInput" Width="100" Margin="5 0"/>
-                <TextBlock Text="m/s" VerticalAlignment="Center"/>
+                <TextBlock Text="Velocidad:"
+                           Width="110"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="SemiBold"/>
+                <TextBox x:Name="VelocityInput"
+                           Width="100"
+                           Margin="5 0"
+                           FontSize="16"
+                           Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <TextBlock Text="m/s"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           FontStyle="Italic"/>
+                
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="0 5">
-                <TextBlock Text="Tiempo (t):" Width="100" VerticalAlignment="Center"/>
-                <TextBox x:Name="TimeInput" Width="100" Margin="5 0"/>
-                <TextBlock Text="s" VerticalAlignment="Center"/>
+                <TextBlock Text="Tiempo:"
+                           Width="110"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="SemiBold"/>
+                <TextBox x:Name="TimeInput"
+                           Width="100"
+                           Margin="5 0"
+                           FontSize="16"
+                           Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <TextBlock Text="s"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           FontStyle="Italic"/>
+                
             </StackPanel>
             <Button Content="Calcular"
-                    Width="100"
+                    Width="120"
+                    FontSize="16"
+                    FontWeight="Bold"
                     Margin="0 10 0 0"
                     Click="CalculateButton_Click"
                     Style="{StaticResource MaterialDesignRaisedButton}" />
+            <TextBlock x:Name="ResultText"
+                         Text="Resultado:"
+                         Margin="0 15 0 0"
+                         FontSize="16"
+                         FontWeight="Bold"
+                         Foreground="DarkSlateBlue"
+                         TextWrapping="Wrap"/>
+            <!-- Resultado numérico -->
+         
         </StackPanel>
 
         <!-- Texto dinámico y botones -->
@@ -80,9 +123,12 @@
                     HorizontalAlignment="Center"
                     Margin="0 10">
             <TextBlock x:Name="MissingParametersText"
-                       Text="Faltan 2 parámetros por completar"
-                       VerticalAlignment="Center"
-                       Margin="0 0 20 0"/>
+                         Text="Faltan 2 parámetros por completar"
+                         FontSize="14"
+                         FontWeight="Medium"
+                         Foreground="DarkRed"
+                         VerticalAlignment="Center"
+                         Margin="0 0 20 0"/>
             <Button ToolTip="Volver al menú"
                     Click="BackButton_Click"
                     Style="{StaticResource MaterialDesignIconButton}">

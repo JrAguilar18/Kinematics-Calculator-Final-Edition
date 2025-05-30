@@ -36,7 +36,8 @@ namespace Kinematics_Calculator_2
             {
                 string selectedFunction = ((ComboBoxItem)FunctionSelector.SelectedItem).Content.ToString();
 
-                PlotArea.Plot.Clear();
+                var plt = PlotArea.Plot;
+                plt.Clear();
 
                 if (selectedFunction == "d(t) = v·t")
                 {
@@ -45,9 +46,13 @@ namespace Kinematics_Calculator_2
                     for (int i = 0; i < time.Length; i++)
                         distance[i] = v * time[i];
 
-                    PlotArea.Plot.Add.Scatter(time, distance);
-                    PlotArea.Plot.XLabel("Tiempo (s)");
-                    PlotArea.Plot.YLabel("Distancia (m)");
+                    var scatter = plt.Add.Scatter(time, distance);
+                    scatter.LineWidth = 3;
+                    scatter.Color = ScottPlot.Colors.MediumBlue;
+
+                    plt.Title("Gráfico de d(t) = v·t", size: 20);
+                    plt.XLabel("Tiempo (s)", size: 16);
+                    plt.YLabel("Distancia (m)", size: 16);
                 }
                 else if (selectedFunction == "v(t) = v")
                 {
@@ -56,11 +61,14 @@ namespace Kinematics_Calculator_2
                     for (int i = 0; i < time.Length; i++)
                         velocity[i] = v;
 
-                    PlotArea.Plot.Add.Scatter(time, velocity);
-                    PlotArea.Plot.XLabel("Tiempo (s)");
-                    PlotArea.Plot.YLabel("Velocidad (m/s)");
-                }
+                    var scatter = plt.Add.Scatter(time, velocity);
+                    scatter.LineWidth = 3;
+                    scatter.Color = ScottPlot.Colors.DarkGreen;
 
+                    plt.Title("Gráfico de v(t) = v", size: 20);
+                    plt.XLabel("Tiempo (s)", size: 16);
+                    plt.YLabel("Velocidad (m/s)", size: 16);
+                }
 
                 PlotArea.Refresh();
                 MissingParametersText.Text = "Todos los parámetros están completos.";
